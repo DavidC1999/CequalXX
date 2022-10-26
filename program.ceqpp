@@ -1,0 +1,6 @@
+
+var test;
+
+func main() -> void {
+    print("Hello world!");
+}

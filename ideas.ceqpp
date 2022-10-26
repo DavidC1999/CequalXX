@@ -1,0 +1,44 @@
+/*
+We do not recognize '$' character so we can use it internally in the interpreter/compiler.
+*/
+
+scream_threshold: const decimal = 20_000;
+
+interface MyInterface {
+    sayCost(scream: bool);
+}
+
+struct Car {
+    interface MyInterface;
+
+    name: string;
+    cost: decimal;
+
+    sayCost(scream: bool) -> void {
+        if scream {
+            print("THE CAR COSTS " + str(self.cost) + " EUROS?!");
+        } else {
+            print("The car costs " + str(self.cost) + " euros");
+        }
+    }
+}
+
+func change_cost(car_ptr: Car*, new_cost: decimal) -> void {
+    // auto dereference
+    car_ptr.cost = new_cost;
+}
+
+func main() -> int {
+    my_car: Car;
+
+    my_car.name = "Tesla";
+    my_car.cost = 100000.0;
+
+
+    should_scream: bool = my_car.cost > scream_threshold;
+    my_car.sayCost(should_scream);
+
+    change_cost(&my_car, 10_000);
+
+    return 0;
+}
