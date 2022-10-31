@@ -2,7 +2,8 @@
 
 class Token {
 public:
-    virtual std::string str() = 0;
+    [[nodiscard]] virtual std::string str() const = 0;
+    [[nodiscard]] virtual int64_t type_id() const = 0;
 
     virtual ~Token() = default;
 };

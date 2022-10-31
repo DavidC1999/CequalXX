@@ -5,6 +5,7 @@
 
 #include <string_view>
 #include "Tokenizer/Tokenizer.h"
+#include "Parser/Parser.h"
 
 
 std::string read_file(const std::string& path) {
@@ -27,11 +28,15 @@ int main() {
 
     token_vec_t tokens = tokenizer.Tokenize();
 
-    for(auto& tok : tokens) {
+    for(const auto& tok : tokens) {
         std::cout << tok->str() << std::endl;
     }
-//    std::cout << contents << std::endl;
 
+    Parser parser(tokens);
+
+    std::unique_ptr<Node> node = parser.parse();
+
+    std::cout << node->str();
 
 
     return 0;

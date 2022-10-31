@@ -8,8 +8,14 @@
 
 class SemicolonToken : public Token {
 public:
-    std::string str() override {
+    static inline constexpr int64_t TYPE_ID = __COUNTER__;
+
+    [[nodiscard]] std::string str() const override {
         return "[';']";
+    }
+
+    [[nodiscard]] int64_t type_id() const override {
+        return TYPE_ID;
     }
 
     static constexpr const char* regex = ";";

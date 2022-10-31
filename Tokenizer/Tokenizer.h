@@ -5,18 +5,7 @@
 #include <cstdint>
 #include <regex>
 
-#include "Token.h"
-#include "TokenGenerator.h"
-#include "NumberToken.h"
-#include "IdentifierToken.h"
-#include "LParenToken.h"
-#include "RParenToken.h"
-#include "ArrowToken.h"
-#include "LBraceToken.h"
-#include "StringLiteralToken.h"
-#include "SemicolonToken.h"
-#include "RBraceToken.h"
-#include "KeywordToken.h"
+#include "Tokens.h"
 
 typedef std::vector<std::unique_ptr<Token>> token_vec_t;
 
@@ -44,7 +33,6 @@ private:
     std::string::const_iterator _text_curr;
     const std::string::const_iterator _text_end;
 
-    size_t _offset = 0;
     uint64_t _line_number = 1;
 
     void panic(const std::stringstream& message) const;

@@ -9,16 +9,22 @@
 
 class NumberToken : public Token {
 public:
+    static inline constexpr int64_t TYPE_ID = __COUNTER__;
+
     explicit NumberToken(int64_t number) : _number(number) {}
 
     [[nodiscard]] int64_t get_number() const {
         return _number;
     }
 
-    std::string str() override {
+    [[nodiscard]] std::string str() const override {
         std::ostringstream output;
         output << "[NUMBER: " << _number << "]";
         return output.str();
+    }
+
+    [[nodiscard]] int64_t type_id() const override {
+        return TYPE_ID;
     }
 
     static constexpr const char* regex = "[0-9]+";
